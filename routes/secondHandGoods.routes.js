@@ -1,19 +1,7 @@
 const router = require("express").Router();
 const { default: mongoose } = require("mongoose");
-const SecondHandGoods = require("../models/SecondHandGoods.model")
-
-
-//  POST /api/secondHandGoods  -  Creates a new secondHandGood
-router.post('/secondHandGoods', (req, res, next) => {
-    const {name, price, variety, description, image, contact } = req.body;
-   
-    SecondHandGoods.create(req.body)
-      .then(response => res.json(response))
-      .catch(err => {
-        console.log("error creating new secondHandGood", err);
-        res.status(500).json(err)
-    });
-  });
+const SecondHandGoods = require("../models/SecondHandGoods.model");
+const fileUploader = require("../config/cloudinary.config");
 
 // GET /api/secondHandGoods -  Retrieves all of the secondHandGoods
 router.get('/secondHandGoods', (req, res, next) => {
@@ -22,6 +10,39 @@ router.get('/secondHandGoods', (req, res, next) => {
         .then(allSecondHandGoods => res.json(allSecondHandGoods))
         .catch(err => {
             console.log("error getting allSecondHandGoods from DB", err);
+            res.status(500).json(err)
+        });
+});
+
+// for uploading files
+router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
+       
+    if (!req.file) {
+      next(new Error("No file uploaded!"));
+      return;
+    }  
+    res.json({ fileUrl: req.file.path });
+  });
+
+//  POST /api/secondHandGoods  -  Creates a new secondHandGood
+router.post('/secondHandGoods', fileUploader.single("imageUrl"), (req, res, next) => {
+    const {name, price, variety, description, imageUrl, contact } = req.body;
+    
+    SecondHandGoods.create(req.body)
+      .then(response => res.json(response))
+      .catch(err => {
+        console.log("error creating new secondHandGood", err);
+        res.status(500).json(err)
+    });
+  });
+
+// GET /api/secondHandGoods-random -  Retrieves the random secondHandGoods
+router.get('/secondHandGoods/random', (req, res, next) => {
+    SecondHandGoods.find({$limit : 10})
+        .populate('author')
+        .then(randomSecondHandGoods => res.json(randomSecondHandGoods))
+        .catch(err => {
+            console.log("error getting randomSecondHandGoods from DB", err);
             res.status(500).json(err)
         });
 });
@@ -45,7 +66,7 @@ router.get('/secondHandGoods/:secondHandGoodId', (req, res, next) => {
 });
 
 // PUT  /api/secondHandGoods/:secondHandGoodId  -  Updates a specific secondHandGood by id
-router.put('/secondHandGoods/:secondHandGoodId', (req, res, next) => {
+router.put('/secondHandGoods/edit/:secondHandGoodId', (req, res, next) => {
     const { secondHandGoodId } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(secondHandGoodId)) {

@@ -5,15 +5,15 @@ const discoverySchema = new Schema(
     {
         title: {
             type: String,
-            require: true
+            required: true
         },        
         description: {
             type: String,
-            require: true
+            required: true
         },
-        image: {
+        imageUrl: {
             type: String,
-            require: false
+            required: true
         },        
         author: {
             type: Schema.Types.ObjectId, ref: 'User'

@@ -5,27 +5,34 @@ const secondHandGoodsSchema = new Schema(
     {
         name: {
             type: String,
-            require: true
+            required: true
         },
         price: {
             type: Number,
-            require: true
+            required: true
         },
-        variety: {
+        category: {
             type: String,
-            require: true
+            required: true,
+            enum:[
+                "Autos",
+                "Bicycles", 
+                "Electronics", 
+                "Pets",
+                "Fashion & Beauty",
+                "Family, Child & Baby",
+                "Others"
+            ]
         },
         description: {
             type: String,
-            require: true
+            required: true
         },
-        image: {
-            type: String,
-            require: false
-        },
+        imageUrl: String,           
+       
         contact: {
             type: String,
-            require: true
+            required: true
         },
         author: {
             type: Schema.Types.ObjectId, ref: 'User'

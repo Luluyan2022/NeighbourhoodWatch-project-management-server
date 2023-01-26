@@ -2,6 +2,19 @@ const router = require("express").Router();
 const { default: mongoose } = require("mongoose");
 // const { default: mongoose } = require("mongoose");
 const Discovery = require("../models/Discovery.model")
+const fileUploader = require("../config/cloudinary.config");
+
+
+// GET /api/discoveries -  Retrieves all of the discoveries
+router.get('/discoveries', (req, res, next) => {
+    Discovery.find()
+        .populate('author')
+        .then(allDiscoveries => res.json(allDiscoveries))
+        .catch(err => {
+            console.log("error getting allDiscoveries from DB", err);
+            res.status(500).json(err)
+        });
+});
 
 //  POST /api/discoveries  -  Creates a new discovery
 router.post('/discoveries', (req, res, next) => {
@@ -14,17 +27,6 @@ router.post('/discoveries', (req, res, next) => {
         res.status(500).json(err)
     });
   });
-
-// GET /api/discoveries -  Retrieves all of the discoveries
-router.get('/discoveries', (req, res, next) => {
-    Discovery.find()
-        .populate('author')
-        .then(allDiscoveries => res.json(allDiscoveries))
-        .catch(err => {
-            console.log("error getting allDiscoveries from DB", err);
-            res.status(500).json(err)
-        });
-});
 
 // GET /api/discoveries -  Retrieves a specic discovery
 router.get('/discoveries/:discoveryId', (req, res, next) => {
@@ -44,7 +46,7 @@ router.get('/discoveries/:discoveryId', (req, res, next) => {
 });
 
 // PUT /api/discoveries -  Updates a specic discovery
-router.put('/discoveries/:discoveryId', (req, res, next) => {
+router.put('/discoveries/edit/:discoveryId', (req, res, next) => {
     const {discoveryId} = req.params;
     if(!mongoose.Types.ObjectId.isValid(discoveryId)){
         res.status(400).json({message: 'Specified id is not valid'})

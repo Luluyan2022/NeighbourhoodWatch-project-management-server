@@ -12,15 +12,19 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
+      trim: true,
       required: [true, "Password is required."],
     },
     name: {
       type: String,
+      unique: true,
       required: [true, "Name is required."],
     },
+    secondHandGoods: [String],
+    discovery: [String]
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
+   
     timestamps: true,
   }
 );
