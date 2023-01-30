@@ -18,6 +18,7 @@ const discoverySchema = new Schema(
         author: {
             type: Schema.Types.ObjectId, ref: 'User'
         },
+        likerArr:[String]
     },
     {
 

@@ -26,7 +26,7 @@ router.post("/upload", fileUploader.single("imageUrl"), (req, res, next) => {
 
 //  POST /api/secondHandGoods  -  Creates a new secondHandGood
 router.post('/secondHandGoods', fileUploader.single("imageUrl"), (req, res, next) => {
-    const {name, price, variety, description, imageUrl, contact } = req.body;
+    const {name, price, variety, description, imageUrl, contact, author} = req.body;
     
     SecondHandGoods.create(req.body)
       .then(response => res.json(response))

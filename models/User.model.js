@@ -20,8 +20,8 @@ const userSchema = new Schema(
       unique: true,
       required: [true, "Name is required."],
     },
-    secondHandGoods: [String],
-    discovery: [String]
+    secondHandGoods: [Object],
+    discovery: [Object]
   },
   {
    

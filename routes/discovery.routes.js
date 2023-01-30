@@ -18,7 +18,7 @@ router.get('/discoveries', (req, res, next) => {
 
 //  POST /api/discoveries  -  Creates a new discovery
 router.post('/discoveries', (req, res, next) => {
-    const {title, description, image} = req.body;
+    const {title, description, imageUrl, author} = req.body;
    
     Discovery.create(req.body)
       .then(response => res.json(response))
