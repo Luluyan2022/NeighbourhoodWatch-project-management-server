@@ -36,6 +36,7 @@ router.get('/discoveries/:discoveryId', (req, res, next) => {
     }
 
     Discovery.findById(discoveryId)
+         // populate the author in both parts and prevent displaying the password of user
         .populate({path:"author comments.author",select:"-password"})
         .then(discoveryDetails => { 
             res.json(discoveryDetails)})
