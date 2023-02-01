@@ -36,8 +36,9 @@ router.get('/discoveries/:discoveryId', (req, res, next) => {
     }
 
     Discovery.findById(discoveryId)
-        .populate('author')
-        .then(discoveryDetails => res.json(discoveryDetails))
+        .populate({path:"author comments.author",select:"-password"})
+        .then(discoveryDetails => { 
+            res.json(discoveryDetails)})
         .catch(err => {
             console.log("error getting one discoveryDetails from DB", err);
             res.status(500).json(err)
