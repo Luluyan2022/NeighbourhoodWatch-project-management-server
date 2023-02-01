@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { default: mongoose } = require("mongoose");
-// const { default: mongoose } = require("mongoose");
 const Discovery = require("../models/Discovery.model")
 const fileUploader = require("../config/cloudinary.config");
 

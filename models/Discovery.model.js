@@ -18,7 +18,13 @@ const discoverySchema = new Schema(
         author: {
             type: Schema.Types.ObjectId, ref: 'User'
         },
-        likerArr:[String]
+        likerArr:[String],
+        comments: [{
+          content:String,
+          author:{
+            type: Schema.Types.ObjectId, ref: 'User'
+        }
+        }]
     },
     {
 
