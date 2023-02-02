@@ -36,8 +36,13 @@ const secondHandGoodsSchema = new Schema(
         },
         author: {
             type: Schema.Types.ObjectId, ref: 'User'
-        }
-
+        },
+        messages: [{
+            message:String,
+            author:{
+              type: Schema.Types.ObjectId, ref: 'User'
+          }
+        }]
     },
     {
 

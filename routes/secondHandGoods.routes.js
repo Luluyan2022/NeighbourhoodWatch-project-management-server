@@ -57,7 +57,7 @@ router.get('/secondHandGoods/:secondHandGoodId', (req, res, next) => {
     }
     
     SecondHandGoods.findById(secondHandGoodId)
-        .populate('author')
+        .populate({path:"author messages.author",select:"-password"})
         .then(secondHandGoodDetails => res.status(200).json(secondHandGoodDetails))
         .catch(err => {
             console.log("error getting one secondHandGoodDetails", err);
