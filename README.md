@@ -52,8 +52,8 @@ To run in your computer, follow these steps:
 | POST  | /api/discoveries  | Authorization: Bearer `<jwt>`  | { title, description, imageUrl, author }  | Create new discovery  |
 | GET  | /api/discoveries  | Authorization: Bearer `<jwt>`  | –  | Get all discoveries  |
 | GET  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | – | Get discovery details  |
-| PUT  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | –  | Update a project  |
-| DELETE  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | – | Delete a project  |
+| PUT  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | –  | Update a discovery  |
+| DELETE  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | – | Delete a discovery  |
 
 
 <br/>
