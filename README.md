@@ -50,8 +50,8 @@ To run in your computer, follow these steps:
 | HTTP verb   | Path | Request Headers | Request body  | Description |
 | ------------- | ------------- | ------------- |------------- | ------------- |
 | POST  | /api/discoveries  | Authorization: Bearer `<jwt>`  | { title, description, imageUrl, author }  | Create new discovery  |
-| GET  | /api/discoveries  | –  | –  | Get all discoveries  |
-| GET  | /api/discoveries/:discoveryId  | –  | – | Get discovery details  |
+| GET  | /api/discoveries  | Authorization: Bearer `<jwt>`  | –  | Get all discoveries  |
+| GET  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | – | Get discovery details  |
 | PUT  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | –  | Update a project  |
 | DELETE  | /api/discoveries/:discoveryId  | Authorization: Bearer `<jwt>`  | – | Delete a project  |
 
@@ -63,8 +63,8 @@ To run in your computer, follow these steps:
 | HTTP verb   | Path | Request Headers | Request body  | Description |
 | ------------- | ------------- | ------------- |------------- | ------------- |
 | POST  | /api/secondHandGoods  | Authorization: Bearer `<jwt>`  | { name, price, variety, description, imageUrl, contact, author }  | Create new secondHandGood  |
-| GET  | /api/secondHandGoods | –  | –  | Get all tasks |
-| GET  | /api/secondHandGoods/:secondHandGoodId | –  | – | Get secondHandGood details |
+| GET  | /api/secondHandGoods | Authorization: Bearer `<jwt>`  | –  | Get all secondHandGood |
+| GET  | /api/secondHandGoods/:secondHandGoodId | Authorization: Bearer `<jwt>`  | – | Get secondHandGood details |
 | PUT  | /api/secondHandGoods/:secondHandGoodId  | Authorization: Bearer `<jwt>`  | –  | Update a secondHandGood  |
 | DELETE  | /api/secondHandGoods/:secondHandGoodId  | Authorization: Bearer `<jwt>`  | – | Delete a secondHandGood  |
 
