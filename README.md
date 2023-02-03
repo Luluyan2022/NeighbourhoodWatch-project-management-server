@@ -73,7 +73,7 @@ To run in your computer, follow these steps:
 **Uploading files**
 | HTTP verb   | Path | Request Headers | Request body  | Description |
 | ------------- | ------------- | ------------- |------------- | ------------- |
-| POST  | /api/upload  | Authorization: Bearer `<jwt>`  | –  | upload files  |
+| POST  | /api/upload  | – | –  | upload files  |
 
 ## Demo
 
